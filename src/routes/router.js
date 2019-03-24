@@ -1,6 +1,13 @@
 const router = require('express').Router();
-const bookRouter = require('./book.routes');
+const passport = require('passport');
+const jwtStrategy = require('../../config/passport-jwt.config');
 
-router.use('/book', bookRouter);
+const bookRouter = require('./book.routes');
+const userRoter = require('./user.routes');
+
+passport.use(jwtStrategy);
+
+router.use('/book', passport.authenticate('jwt', { session: false }), bookRouter);
+router.use('/user', userRoter);
 
 module.exports = router;

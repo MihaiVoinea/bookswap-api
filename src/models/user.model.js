@@ -3,13 +3,16 @@ const bcrypt = require('bcrypt');
 
 const UserSchema = mongoose.Schema({
   email: {
-    type: String
-    // required: true,
-    // unique: true
+    type: String,
+    required: true,
+    unique: true
   },
   password: {
+    type: String,
+    require: true
+  },
+  twitterId: {
     type: String
-    // require: true
   }
 });
 
@@ -39,9 +42,10 @@ UserSchema.methods.verifyPassword = async function verifyPassword(password) {
 
 UserSchema.statics.findOrCreate = function findOrCreate(profile, cb) {
   const userObj = new this();
-  this.findOne({ _id: profile.id }, (err, result) => {
+  this.findOne({ twitterId: profile.id }, (err, result) => {
     if (!result) {
-      userObj.username = profile.displayName;
+      userObj.email = profile.emails[0].value;
+      userObj.twitterId = profile.id;
       // ....
       userObj.save(cb);
     } else {

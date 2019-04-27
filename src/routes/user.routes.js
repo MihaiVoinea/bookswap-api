@@ -15,7 +15,7 @@ router.get(
   passport.authenticate('twitter', { failureRedirect: '/login' }),
   (req, res) => {
     // Successful authentication, redirect home.
-    res.redirect('/');
+    res.json(req.user);
   }
 );
 

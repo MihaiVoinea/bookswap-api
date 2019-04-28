@@ -5,7 +5,7 @@ const bookController = require('../controllers/book.controller');
 router.post('/', bookController.create);
 
 // Retrieve all Books
-router.get('/', bookController.findAll);
+router.get('/', bookController.query, bookController.findAll);
 
 // Retrieve a single Book
 router.get('/:bookId', bookController.findOne);

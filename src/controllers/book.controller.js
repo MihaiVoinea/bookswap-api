@@ -21,6 +21,11 @@ exports.create = (req, res) => {
   } else res.status(400).send({ message: 'Book content can not be empty' });
 };
 
+exports.query = (req, res, next) => {
+  if (!req.query.q) return next();
+  return res.json(req.query.q);
+};
+
 // Retrieve all Books
 exports.findAll = (req, res) => {
   Book.find()

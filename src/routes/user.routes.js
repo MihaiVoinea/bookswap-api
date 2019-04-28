@@ -1,23 +1,16 @@
 const router = require('express').Router();
-const passport = require('passport');
 const userController = require('../controllers/user.controller');
-const { validateBody, schemas } = require('../helpers/route.helper');
 
-// Register a new user account
-router.post('/register', validateBody(schemas.authSchema), userController.register);
+// Retrieve my user
+router.get('/', userController.findMe);
 
-// Login into the account
-router.post('/login', userController.login);
+// // Retrieve a single user
+// router.get('/:bookId', userController.findOne);
 
-router.get('/twitter', passport.authenticate('twitter'));
+// // Update my user
+// router.put('/:bookId', userController.update);
 
-router.get(
-  '/twitter/callback',
-  passport.authenticate('twitter', { failureRedirect: '/login' }),
-  (req, res) => {
-    // Successful authentication, redirect home.
-    res.json(req.user);
-  }
-);
+// // Delete my user
+// router.delete('/:BookId', userController.delete);
 
 module.exports = router;

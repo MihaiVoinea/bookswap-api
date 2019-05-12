@@ -4,7 +4,7 @@ const authController = require('../controllers/auth.controller');
 const { validateBody, schemas } = require('../helpers/route.helper');
 
 // Register a new user account
-router.post('/local/singup', validateBody(schemas.authSchema), authController.register);
+router.post('/local/signup', validateBody(schemas.authSchema), authController.register);
 
 // Login into the account
 router.post('/local/signin', authController.login);

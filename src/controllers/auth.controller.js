@@ -41,15 +41,17 @@ exports.login = (req, res) => {
     email: req.body.email
   })
     .then(user => {
-      if (!user) res.status(401).send({ message: 'Wrong email or password' });
+      if (!user || !user.password) res.status(401).send({ message: 'Wrong email or password' });
 
-      if (user.verifyPassword(req.body.password)) {
-        // eslint-disable-next-line no-underscore-dangle
+      user.verifyPassword(req.body.password).then(result => {
+        if (result === true) {
+          // eslint-disable-next-line no-underscore-dangle
 
-        res.json(signToken(user));
-      } else {
-        res.status(401).send({ message: 'Wrong email or password' });
-      }
+          res.json({ jwt: signToken(user) });
+        } else {
+          res.status(401).send({ message: 'Wrong email or password' });
+        }
+      });
     })
     .catch(err => {
       res.status(500).send({ message: err.message || 'Some error occured during login' });

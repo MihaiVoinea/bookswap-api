@@ -9,7 +9,7 @@ module.exports = new TwitterStrategy(
       'https://api.twitter.com/1.1/account/verify_credentials.json?include_email=true',
     callbackURL: 'http://localhost:8081/api/v1/auth/twitter/callback'
   },
-  function(token, tokenSecret, profile, cb) {
+  (token, tokenSecret, profile, cb) => {
     console.log(profile);
     User.findOrCreate(profile, (err, user) => {
       return cb(err, user);

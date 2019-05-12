@@ -25,6 +25,7 @@ const UserSchema = mongoose.Schema({
 
 // Apelat inainte de salvarea in baza de date.
 UserSchema.pre('save', function preSaveHashPassword(next) {
+  if (!this.password) next();
   console.log('pre save');
   bcrypt
     .hash(this.password, 10)

@@ -2,10 +2,16 @@ const User = require('../models/user.model.js');
 
 // Retrieve my user
 exports.findMe = (req, res) => {
-  console.log(req);
   User.findById(req.user.id)
     .then(doc => {
-      res.status(200).send(doc);
+      const result = {
+        id: doc.id,
+        email: doc.email,
+        twitterId: undefined || doc.twitterId,
+        fullName: undefined || doc.fullName,
+        displayName: undefined || doc.displayName
+      };
+      res.status(200).send(result);
     })
     .catch(err => {
       res

@@ -5,7 +5,9 @@ exports.create = (req, res) => {
   if (req.body.title && req.body.author) {
     const book = new Book({
       title: req.body.title,
-      author: req.body.author
+      author: req.body.author,
+      description: undefined || req.body.description,
+      coverUrl: req.body.coverUrl
     });
 
     book

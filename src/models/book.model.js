@@ -8,6 +8,13 @@ const BookSchema = mongoose.Schema({
   author: {
     type: String,
     required: true
+  },
+  description: {
+    type: String
+  },
+  coverUrl: {
+    type: String,
+    required: true
   }
 });
 

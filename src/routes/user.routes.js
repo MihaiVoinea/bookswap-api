@@ -4,13 +4,13 @@ const userController = require('../controllers/user.controller');
 // Retrieve my user
 router.get('/', userController.findMe);
 
-// // Retrieve a single user
-// router.get('/:bookId', userController.findOne);
+// Retrieve a single user
+// router.get('/:userId', userController.findOne);
 
-// // Update my user
-// router.put('/:bookId', userController.update);
+// Update my user
+router.put('/', userController.update);
 
-// // Delete my user
-// router.delete('/:BookId', userController.delete);
+// Delete my user
+// router.delete('/:userId', userController.delete);
 
 module.exports = router;

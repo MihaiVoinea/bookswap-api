@@ -20,6 +20,14 @@ const UserSchema = mongoose.Schema({
   },
   displayName: {
     type: String
+  },
+  // judetul
+  region: {
+    type: String
+  },
+  // localitatea
+  location: {
+    type: String
   }
 });
 

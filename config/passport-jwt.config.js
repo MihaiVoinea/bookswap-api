@@ -8,7 +8,6 @@ const opts = {
 };
 
 module.exports = new JwtStrategy(opts, (jwtPayload, done) => {
-  console.log(jwtPayload);
   User.findById(jwtPayload.sub)
     .then(user => {
       if (!user) return done(null, false);

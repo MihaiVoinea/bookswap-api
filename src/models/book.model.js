@@ -15,6 +15,10 @@ const BookSchema = mongoose.Schema({
   coverUrl: {
     type: String,
     required: true
+  },
+  addedBy: {
+    type: String,
+    required: true
   }
 });
 

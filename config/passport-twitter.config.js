@@ -9,7 +9,7 @@ module.exports = new TwitterStrategy(
       'https://api.twitter.com/1.1/account/verify_credentials.json?include_email=true',
     callbackURL:
       process.env.NODE_ENV === 'production'
-        ? 'https://bookswap.ro/api/v1/auth/twitter/callback'
+        ? 'https://api.bookswap.ro/api/v1/auth/twitter/callback'
         : 'http://localhost:8081/api/v1/auth/twitter/callback'
   },
   (token, tokenSecret, profile, cb) => {

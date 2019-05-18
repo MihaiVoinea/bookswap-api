@@ -17,10 +17,15 @@ const signToken = user => {
 };
 
 exports.register = (req, res) => {
+  console.log(req.body);
   if (req.body.email && req.body.password) {
     const user = new User({
       email: req.body.email,
-      password: req.body.password
+      password: req.body.password,
+      displayName: req.body.displayName,
+      fullName: req.body.fullName,
+      region: req.body.region,
+      location: req.body.location
     });
 
     user
@@ -66,7 +71,10 @@ exports.handleTwitterAuth = (req, res) => {
     .then(doc => {
       res.redirect(
         url.format({
-          pathname: 'http://localhost:8080/auth/oauth-callback',
+          pathname:
+            process.env.NODE_ENV === 'production'
+              ? 'https://bookswap.ro/auth/oauth-callback'
+              : 'http://localhost:8080/auth/oauth-callback',
           query: {
             id: doc.id
           }

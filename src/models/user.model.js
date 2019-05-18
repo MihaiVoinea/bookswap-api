@@ -21,6 +21,9 @@ const UserSchema = mongoose.Schema({
   displayName: {
     type: String
   },
+  pictureUrl: {
+    type: String
+  },
   // judetul
   region: {
     type: String
@@ -65,6 +68,7 @@ UserSchema.statics.findOrCreate = function findOrCreate(profile, cb) {
       userObj.twitterId = profile.id;
       userObj.fullName = getNameFromUsername(profile.displayName);
       userObj.displayName = getFirstameFromUsername(profile.displayName);
+      userObj.pictureUrl = profile.photos[0].value;
       // ....
       userObj.save(cb);
     } else {

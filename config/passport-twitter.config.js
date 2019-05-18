@@ -7,10 +7,12 @@ module.exports = new TwitterStrategy(
     consumerSecret: process.env.TWITTER_CONSUMER_SECRET,
     userProfileURL:
       'https://api.twitter.com/1.1/account/verify_credentials.json?include_email=true',
-    callbackURL: 'http://localhost:8081/api/v1/auth/twitter/callback'
+    callbackURL:
+      process.env.NODE_ENV === 'production'
+        ? 'https://bookswap.ro/api/v1/auth/twitter/callback'
+        : 'http://localhost:8081/api/v1/auth/twitter/callback'
   },
   (token, tokenSecret, profile, cb) => {
-    console.log(profile);
     User.findOrCreate(profile, (err, user) => {
       return cb(err, user);
     });

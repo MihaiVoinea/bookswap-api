@@ -8,7 +8,7 @@ const regionRouter = require('./region.routes');
 
 router.use('/book', passport.authenticate('jwt', { session: false }), bookRouter);
 router.use('/user', passport.authenticate('jwt', { session: false }), userRouter);
-router.use('/region', passport.authenticate('jwt', { session: false }), regionRouter);
+router.use('/region', regionRouter);
 router.use('/auth', authRouter);
 
 module.exports = router;

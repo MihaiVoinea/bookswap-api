@@ -19,6 +19,10 @@ exports.schemas = {
     email: Joi.string()
       .email()
       .required(),
-    password: Joi.string().required()
+    password: Joi.string().required(),
+    displayName: Joi.string(),
+    fullName: Joi.string(),
+    region: Joi.string(),
+    location: Joi.string()
   })
 };

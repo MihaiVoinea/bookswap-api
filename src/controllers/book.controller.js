@@ -58,7 +58,6 @@ exports.query = (req, res, next) => {
         ]);
       } else if (convertedResponse.length >= 2) {
         convertedResponse = convertedResponse.map(book => book.best_book);
-        res.json(convertedResponse);
         const json = [];
         convertedResponse.forEach(book => {
           // If the book cover image is the default placeholder from Goodreads don't return a coverUrl
